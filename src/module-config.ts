@@ -23,7 +23,39 @@ const access: Role = "admin";
 
 type admin = { id: number; role: "admin"; privilize: string[] };
 type member = { id: number; role: "member"; plans: string[] };
- 
-const user:admin ={id:123, role:"admin",  privilize: ["apple", "juice"]}
- 
+
+const user: admin = { id: 123, role: "admin", privilize: ["apple", "juice"] };
+
 console.log(user);
+
+// interface ex 
+interface animals {
+  species: string;
+}
+
+interface Cat extends animals {
+  breed: string;
+}
+
+const cat: Cat = {
+  breed: "persian ",
+  species: "france"
+};
+
+// type union 
+
+type vehile ={
+  brand : string;
+}
+
+type car = vehile &{
+  model : "corolla"
+};
+
+const Car:car={ 
+ model: "corolla",
+ brand: "suv"
+}
+
+
+
