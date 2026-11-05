@@ -83,5 +83,40 @@ const getError = (msg: string) : never =>{
   throw new Error(msg)
 }
 
-const x: string= `2222222`
+const x: string= `2222222`;
+
+// type assertion as syntax 
+
+type Status = "pending" | "approved" | "rejected";
+
+const someStatus: string = "pending";
+
+const showStatus = (status: Status)=>{
+  console.log("your status will be " + status);
+}
+showStatus(someStatus as status)
+
+// non-null assertion 
+
+interface Config {
+  port ? : number;
+}
+
+const config: Config= {
+  port : 5000
+}
+
+const currentPort: number = config.port!;
+
+// constent assertion 
+
+const configuration = {
+  port : 8080,
+  prefix: "./script.ts"
+}as const ;
+
+
+
+
+
 
