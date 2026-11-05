@@ -28,7 +28,7 @@ const user: admin = { id: 123, role: "admin", privilize: ["apple", "juice"] };
 
 console.log(user);
 
-// interface ex 
+// interface ex
 interface animals {
   species: string;
 }
@@ -39,84 +39,114 @@ interface Cat extends animals {
 
 const cat: Cat = {
   breed: "persian ",
-  species: "france"
+  species: "france",
 };
 
-// type union 
+// type union
 
-type vehile ={
-  brand : string;
-}
-
-type car = vehile &{
-  model : "corolla"
+type vehile = {
+  brand: string;
 };
 
-const Car:car={ 
- model: "corolla",
- brand: "suv"
-}
+type car = vehile & {
+  model: "corolla";
+};
+
+const Car: car = {
+  model: "corolla",
+  brand: "suv",
+};
 // ex of any (top types)
-let helloWorld : any = "hello";
+let helloWorld: any = "hello";
 
-helloWorld =`323bas` ;
+helloWorld = `323bas`;
 
-// instance of unknown 
+// instance of unknown
 
 let something: unknown = "hello";
 const num: number = 123;
 something = num;
 
-// ex of nullish type 
+// ex of nullish type
 
 interface user {
-  name : string
+  name: string;
 }
 
 type loggedInUser = user | null;
 
-const currentUser : loggedInUser = null;
+const currentUser: loggedInUser = null;
 
-// bottom type ex 
+// bottom type ex
 
-const getError = (msg: string) : never =>{
-  throw new Error(msg)
-}
+const getError = (msg: string): never => {
+  throw new Error(msg);
+};
 
-const x: string= `2222222`;
+const x: string = `2222222`;
 
-// type assertion as syntax 
+// type assertion as syntax
 
 type Status = "pending" | "approved" | "rejected";
 
 const someStatus: string = "pending";
 
-const showStatus = (status: Status)=>{
+const showStatus = (status: Status) => {
   console.log("your status will be " + status);
-}
-showStatus(someStatus as status)
+};
+showStatus(someStatus as status);
 
-// non-null assertion 
+// non-null assertion
 
 interface Config {
-  port ? : number;
+  port?: number;
 }
 
-const config: Config= {
-  port : 5000
-}
+const config: Config = {
+  port: 5000,
+};
 
 const currentPort: number = config.port!;
 
-// constent assertion 
+// constent assertion
 
 const configuration = {
-  port : 8080,
-  prefix: "./script.ts"
-}as const ;
+  port: 8080,
+  prefix: "./script.ts",
+} as const;
+
+// type guard
+
+const print = (value: string | number) => {
+  if (typeof value === "string") {
+    return value.toUpperCase();
+  }
+  {
+    return value;
+  }
+};
+
+// truthiness ex
+
+type User = {
+  name: string;
+  address?: {
+    street: string;
+  };
+};
+
+const login: User = {
+  name: "shamsul",
+  address: {
+    street: "ABC -->123",
+  },
+};
 
 
-
-
-
-
+const showAddress =(user : User)=>{
+  if (user && user.address){
+    console.log(user.address.street);
+    return;
+  }
+  throw new Error("User not found here")
+}
