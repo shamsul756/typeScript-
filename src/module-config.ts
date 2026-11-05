@@ -56,6 +56,32 @@ const Car:car={
  model: "corolla",
  brand: "suv"
 }
+// ex of any (top types)
+let helloWorld : any = "hello";
 
+helloWorld =`323bas` ;
 
+// instance of unknown 
+
+let something: unknown = "hello";
+const num: number = 123;
+something = num;
+
+// ex of nullish type 
+
+interface user {
+  name : string
+}
+
+type loggedInUser = user | null;
+
+const currentUser : loggedInUser = null;
+
+// bottom type ex 
+
+const getError = (msg: string) : never =>{
+  throw new Error(msg)
+}
+
+const x: string= `2222222`
 
