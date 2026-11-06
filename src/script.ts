@@ -1,4 +1,4 @@
-import { greeting } from "./module-config.js";
+import { payment } from './module-config.js';
 
-greeting();
-
+payment({ method: 'bikash', number: 293 });
+payment({method: "card", cardNo: 21112, exp: 323, cvc:12})

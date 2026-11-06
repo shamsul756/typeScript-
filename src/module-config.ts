@@ -1,152 +1,29 @@
-export const greeting = () => {
-  console.log("hello devloper how can i assist u ?");
+export type BikashPay = {
+  method: "bikash";
+  number: number;
 };
 
-greeting();
-
-// ex of literal type
-type status = "pending";
-
-const status: status = "pending";
-
-// ex of basic union type
-type identity = string | number;
-
-const id: identity = 32;
-
-// ex of literal union
-type Role = "user" | "manager" | "admin";
-
-const access: Role = "admin";
-
-// ex of object union
-
-type admin = { id: number; role: "admin"; privilize: string[] };
-type member = { id: number; role: "member"; plans: string[] };
-
-const user: admin = { id: 123, role: "admin", privilize: ["apple", "juice"] };
-
-console.log(user);
-
-// interface ex
-interface animals {
-  species: string;
-}
-
-interface Cat extends animals {
-  breed: string;
-}
-
-const cat: Cat = {
-  breed: "persian ",
-  species: "france",
+export type CardPay = {
+  method: "card";
+  cardNo: number;
+  exp: number;
+  cvc: number;
 };
 
-// type union
-
-type vehile = {
-  brand: string;
+export type CashPay = {
+  method: "cash";
 };
 
-type car = vehile & {
-  model: "corolla";
-};
+type Pay = BikashPay | CardPay | CashPay;
 
-const Car: car = {
-  model: "corolla",
-  brand: "suv",
-};
-// ex of any (top types)
-let helloWorld: any = "hello";
-
-helloWorld = `323bas`;
-
-// instance of unknown
-
-let something: unknown = "hello";
-const num: number = 123;
-something = num;
-
-// ex of nullish type
-
-interface user {
-  name: string;
-}
-
-type loggedInUser = user | null;
-
-const currentUser: loggedInUser = null;
-
-// bottom type ex
-
-const getError = (msg: string): never => {
-  throw new Error(msg);
-};
-
-const x: string = `2222222`;
-
-// type assertion as syntax
-
-type Status = "pending" | "approved" | "rejected";
-
-const someStatus: string = "pending";
-
-const showStatus = (status: Status) => {
-  console.log("your status will be " + status);
-};
-showStatus(someStatus as status);
-
-// non-null assertion
-
-interface Config {
-  port?: number;
-}
-
-const config: Config = {
-  port: 5000,
-};
-
-const currentPort: number = config.port!;
-
-// constent assertion
-
-const configuration = {
-  port: 8080,
-  prefix: "./script.ts",
-} as const;
-
-// type guard
-
-const print = (value: string | number) => {
-  if (typeof value === "string") {
-    return value.toUpperCase();
+export function payment(p: Pay) {
+  if (p.method === "bikash") {
+    console.log(`send your bikash ${p.number}`);
   }
-  {
-    return value;
+
+  if (p.method === "card") {
+    console.log(`pay your bill with ${p.cardNo} and provide your ${p.cvc} `);
   }
-};
 
-// truthiness ex
-
-type User = {
-  name: string;
-  address?: {
-    street: string;
-  };
-};
-
-const login: User = {
-  name: "shamsul",
-  address: {
-    street: "ABC -->123",
-  },
-};
-
-
-const showAddress =(user : User)=>{
-  if (user && user.address){
-    console.log(user.address.street);
-    return;
-  }
-  throw new Error("User not found here")
 }
+
